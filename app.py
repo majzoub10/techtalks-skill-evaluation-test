@@ -1,7 +1,6 @@
 
 from flask import Flask, request, jsonify, session, redirect, render_template
 from werkzeug.security import check_password_hash
-import mysql.connector
 
 
 app = Flask(__name__)
