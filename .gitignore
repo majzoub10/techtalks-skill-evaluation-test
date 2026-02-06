@@ -1,0 +1,6 @@
+.env
+ca.pem
+setup_db.py
+check_tables.py
+__pycache__/
+*.pyc
