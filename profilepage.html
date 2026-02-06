@@ -11,7 +11,6 @@
       --sage-green: #9caf88;
       --charcoal: #36454f;
       --light-gray: #f8f9fa;
-      c
     }
 
     * { box-sizing: border-box; font-family: "Inter", sans-serif; margin:0; padding:0; }
@@ -45,12 +44,21 @@
       margin-bottom: 15px;
     }
 
-    .pfp input[type="file"] {
-      margin-top: 10px;
-      padding: 6px;
+    .pfp button {
+      padding: 8px 14px;
       border-radius: 8px;
       border: 1px solid rgba(0,0,0,0.1);
       cursor: pointer;
+      background: var(--navy-blue);
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .pfp button:hover {
+      background: var(--sage-green);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26,54,93,0.2);
     }
 
     .info {
@@ -86,7 +94,7 @@
 
     textarea { resize: vertical; min-height: 80px; }
 
-    button {
+    button.save-btn {
       padding: 12px 20px;
       background: var(--navy-blue);
       color: white;
@@ -97,7 +105,7 @@
       transition: all 0.3s ease;
     }
 
-    button:hover {
+    button.save-btn:hover {
       background: var(--sage-green);
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(26,54,93,0.2);
@@ -111,7 +119,14 @@
 
   <div class="pfp">
     <img src="avatar-placeholder.png" alt="Profile Picture" id="profileImg">
-    <input id="profilePicInput" type="file" accept="image/*" onchange="previewImage(event)">
+
+    <!-- Hidden file input -->
+    <input id="profilePicInput" type="file" accept="image/*" onchange="previewImage(event)" style="display:none;">
+
+    <!-- Custom button -->
+    <button type="button" onclick="document.getElementById('profilePicInput').click()">
+      Choose Photo
+    </button>
   </div>
 
   <div class="info">
@@ -122,7 +137,7 @@
   <form>
     <input type="text" id="name" placeholder="Enter your name">
     <textarea id="bio" placeholder="Write a short bio"></textarea>
-    <button type="button" onclick="updateProfile()">Save Changes</button>
+    <button type="button" class="save-btn" onclick="updateProfile()">Save Changes</button>
   </form>
 </div>
 
