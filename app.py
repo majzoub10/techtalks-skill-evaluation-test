@@ -1,22 +1,14 @@
 
 from flask import Flask, request, jsonify, session, redirect, render_template
 from werkzeug.security import check_password_hash
-import mysql.connector
 
+from connection import get_connection
 
 app = Flask(__name__)
 app.secret_key = "SUPER_SECRET_KEY"
 
 
- 
-def get_db_connection():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="YOUR_PASSWORD",
-        database="YOUR_DB"
-    )
-  
+
 
 
 @app.route("/login", methods=["POST"])
@@ -35,7 +27,7 @@ def login():
 
 
 
-    conn = get_db_connection()
+    conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute(
         "SELECT id, password_hash FROM users WHERE email = %s",
