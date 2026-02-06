@@ -43,7 +43,8 @@ def login():
         return jsonify({"message": "Invalid credentials"}), 401
 
     session["user_id"] = user["id"]
-    return jsonify({"message": "Login successful"}), 200
+     return redirect("/dashboard")
+
 
 
 @app.route("/login-page")
