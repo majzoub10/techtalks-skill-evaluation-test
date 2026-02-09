@@ -1,0 +1,310 @@
+/* personal.css */
+
+/* Educational Color Palette */
+:root {
+    /* Primary Colors - Scholarly & Trustworthy */
+    --navy-blue: #1a365d;      /* Deep, trustworthy blue */
+    --oxford-blue: #002147;    /* Classic university blue */
+    --ivory: #fffff0;          /* Soft ivory/off-white */
+    --cream: #f5f5dc;          /* Warm cream for backgrounds */
+    
+    /* Secondary Colors - Academic & Engaging */
+    --sage-green: #9caf88;     /* Calming sage green */
+    --burgundy: #800020;       /* Academic burgundy */
+    --gold: #d4af37;           /* Academic gold/achievement */
+    --terra-cotta: #e2725b;    /* Warm accent color */
+    
+    /* Neutral Colors */
+    --slate-gray: #708090;     /* Sophisticated gray */
+    --charcoal: #36454f;       /* Dark text color */
+    --light-gray: #f8f9fa;     /* Light background */
+    
+    /* Feedback Colors */
+    --success-green: #28a745;  /* Success/confirmation */
+    --warning-orange: #ffc107; /* Warning/attention */
+    --error-red: #dc3545;      /* Error/important */
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+    color: var(--charcoal);
+    min-height: 100vh;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: var(--oxford-blue);
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--gold);
+    position: relative;
+}
+
+h1:after {
+    content: "📚";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+}
+
+/* Info Box Container */
+.infobox {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(26, 54, 93, 0.1);
+    overflow: hidden;
+    border: 2px solid var(--navy-blue);
+}
+
+/* Form Styling */
+.form {
+    padding: 2.5rem;
+}
+
+.form p {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.form label {
+    display: block;
+    font-weight: 600;
+    color: var(--navy-blue);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    padding-left: 5px;
+    border-left: 3px solid var(--sage-green);
+}
+
+/* Input Field Styling */
+input[type="text"],
+input[type="number"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: var(--navy-blue);
+    box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+    background-color: #f8fbff;
+}
+
+/* Special styling for file input */
+input[type="file"] {
+    padding: 10px;
+    border: 2px dashed var(--sage-green);
+    background-color: rgba(156, 175, 136, 0.05);
+    cursor: pointer;
+}
+
+input[type="file"]:hover {
+    background-color: rgba(156, 175, 136, 0.1);
+    border-color: var(--navy-blue);
+}
+
+/* Select Dropdown Styling */
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%231a365d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* Optgroup Styling */
+optgroup {
+    font-weight: bold;
+    color: var(--burgundy);
+    padding: 5px 0;
+}
+
+option {
+    padding: 8px;
+    color: var(--charcoal);
+}
+
+option:hover {
+    background-color: var(--sage-green);
+    color: white;
+}
+
+/* Bio Field Special Styling */
+#bio {
+    min-height: 100px;
+    resize: vertical;
+    padding: 15px;
+    line-height: 1.5;
+}
+
+/* Interactive Elements States */
+input:hover:not(:focus):not([type="file"]),
+select:hover:not(:focus) {
+    border-color: var(--sage-green);
+}
+
+/* Submit Button (if you add one) */
+.submit-btn {
+    display: block;
+    width: 200px;
+    margin: 2rem auto 0;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, var(--navy-blue) 0%, var(--oxford-blue) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 33, 71, 0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 33, 71, 0.3);
+    background: linear-gradient(135deg, var(--oxford-blue) 0%, #001a36 100%);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 33, 71, 0.2);
+}
+
+/* Form Validation Styles */
+input:valid:not(:placeholder-shown) {
+    border-color: var(--success-green);
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+input:invalid:not(:placeholder-shown) {
+    border-color: var(--error-red);
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .infobox {
+        margin: 0 15px;
+        border-radius: 10px;
+    }
+    
+    .form {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin: 1.5rem 0;
+    }
+    
+    input[type="text"],
+    input[type="number"],
+    select {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .form {
+        padding: 1rem;
+    }
+    
+    .form label {
+        font-size: 1rem;
+    }
+}
+
+/* Decorative Elements */
+.form p:after {
+    content: "✦";
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 0.8rem;
+}
+
+/* Focus Accessibility */
+*:focus {
+    outline: 2px solid var(--terra-cotta);
+    outline-offset: 2px;
+}
+
+/* Animation for form elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form p {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.form p:nth-child(1) { animation-delay: 0.1s; }
+.form p:nth-child(2) { animation-delay: 0.2s; }
+.form p:nth-child(3) { animation-delay: 0.3s; }
+.form p:nth-child(4) { animation-delay: 0.4s; }
+.form p:nth-child(5) { animation-delay: 0.5s; }
+.form p:nth-child(6) { animation-delay: 0.6s; }
+.form p:nth-child(7) { animation-delay: 0.7s; }
+.form p:nth-child(8) { animation-delay: 0.8s; }
+.form p:nth-child(9) { animation-delay: 0.9s; }
+
+/* File Upload Preview Area (Optional) */
+.file-preview {
+    margin-top: 10px;
+    display: none;
+}
+
+.file-preview img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 8px;
+    border: 2px solid var(--sage-green);
+    object-fit: cover;
+}
+
+/* Add this if you want a submit button in your form */
+.form:after {
+    content: '';
+    display: block;
+    text-align: center;
+    padding-top: 20px;
+}

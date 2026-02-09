@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Info</title>
+    <link rel="stylesheet" href="personal.css">
+</head>
+<body>
+    <h1>Personal Info</h1>
+    <p>
+        <div class = "infobox">
+            <form class = "form">
+                <p><label for="username">Enter your username: </label></p>
+                <input type="text" id="username" name="username">
+                <p><label for="age">Your age: </label></p>
+                <input type="number" name="age" id="age">
+                <p><label for="place">Where do you live: </label></p>
+                <input type="text" name="place" id="place">
+                <p><label for="phone">Phone number: </label></p>
+                <input type="text" name="phone" id="phone">
+                <p><label for="level">What best describes your current state: </label></p>
+                <select name="state" id="state">
+                    <optgroup label="School Student">
+                        <option value="high">High School</option>
+                        <option value="lessHigh">Intermediate School</option>
+                    </optgroup>
+                    <optgroup label="Collegian">
+                        <option value="under">Undergraduate</option>
+                        <option value="grad">Fresh Graduate</option>
+                        <option value="master">Master</option>
+                    </optgroup>
+                    <optgroup label="Alumini">
+                        <option value="employed">Employee</option>
+                        <option value="intern">Open to work</option>
+                    </optgroup>
+                    <option value="other">Other</option>
+                </select>
+                <p><label for="company">Name of the current company/university/school: </label></p>
+                <input type="text" name="company" id="company">
+                <p><label for="bio">Add your bio: </label></p>
+                <input type="text" name="bio" id="bio">
+                <p><label for="profile">Add your profile picture: </label></p>
+                <input type="file" name="profile" id="profile"> 
+                <p style="text-align: center; margin-top: 2rem;">
+    <button type="submit" class="submit-btn">
+        <span class="btn-text">Save Information</span>
+    </button>
+</p>
+            </form>
+        </div>
+    </p>
+</body>
+</html>
