@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +69,28 @@
       margin: 0 auto;
     }
 
-   
+
+
+/* Container for logo */
+.logo {
+  display: flex;
+  justify-content: center; /* centers horizontally */
+  align-items: center;     /* centers vertically */
+  padding: 10px;           /* smaller padding */
+  background: transparent; /* no background color */
+  border-radius: 0;        /* no rounded corners needed */
+  margin-bottom: 20px;
+}
+
+/* Logo image */
+.sidebar-logo {
+  max-width: 180px;        /* size of logo */
+  height: auto;
+  border: none;            /* remove any border */
+  transition: transform 0.5s ease, filter 0.5s ease; /* smooth hover */
+}
+
+
     .sidebar {
       width: 260px;
       background: white;
@@ -94,39 +116,11 @@
       background: linear-gradient(90deg, var(--navy-blue), var(--sage-green), var(--gold));
     }
 
-    .logo {
-      font-family: 'Changa One', cursive;
-      font-weight: 700;
-      font-size: 28px;
-      color: var(--oxford-blue);
-      background: linear-gradient(135deg, var(--oxford-blue), var(--navy-blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      padding-left: 45px;
-      position: relative;
-      margin-bottom: 10px;
-    }
+  
+  
+ 
 
-    .logo:before {
-      content: " ";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 24px;
-      background: none;
-      -webkit-background-clip: initial;
-      -webkit-text-fill-color: initial;
-    }
 
-    .menu {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex-grow: 1;
-      margin-top: 20px;
-    }
 
     .menu a {
       text-decoration: none;
@@ -393,22 +387,16 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy-blue), var(--sage-green));
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 36px;
-      color: white;
-      font-weight: bold;
-      border: 4px solid white;
-      box-shadow: 0 8px 24px rgba(26, 54, 93, 0.2);
-      overflow: hidden;
-    }
+   .avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 8px 24px rgba(26, 54, 93, 0.2);
+  display: block;
+  margin: 0 auto 20px;
+}
 
 
     .edit-profile-btn {
@@ -613,13 +601,13 @@
 
   
   <aside class="sidebar">
-    <div class="logo">GROWVIA</div>
+    <div class="logo"> <img src="C:\Users\user\techtalks-skill-evaluation-test\dash\statics\uploads\grovia.jpg" class="sidebar-logo"></div>
 
     <nav class="menu">
-      <a href="#"><span>📊</span> Overview</a>
+      <a href="dash.html"><span>📊</span> Overview</a>
       <a href="#"><span>👥</span> Communities</a>
-      <a href="#"><span>📝</span> Tests & Quizzes</a>
-      <a href="#"><span>📈</span> Statistics</a>
+      <a href="rules.html"><span>📝</span> Tests & Quizzes</a>
+      <a href="stat.html"><span>📈</span> Statistics</a>
       <a href="settings.html"><span>⚙️</span> Settings</a>
     </nav>
 
@@ -636,45 +624,7 @@
         <p>Welcome back! Your progress is really good. Keep up the excellent work in your educational journey.</p>
       </div>
 
-      <div class="cards">
-        <div class="card score">
-          <p>Overall Score</p>
-          <h2>0%</h2>
-          <small>📈 0%from last month</small>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Skills Verified</h3>
-          <p>0 out of 12 skills completed</p>
-          <small>🏅 0 badges earned</small>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Quizzes Taken</h3>
-          <p>0 quizzes completed this month</p>
-          <small>🎯 0% average score</small>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%"></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Community Rank</h3>
-          <p>Top 0% of all students</p>
-          <small>👑 Elite learner status</small>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="courses">
+ <div class="courses">
         <h2>Recent Activities</h2>
         <table>
           <thead>
@@ -713,22 +663,61 @@
           </tbody>
         </table>
       </div>
+
+
+
+
+
+
+
+
+
+      <div class="cards">
+        <div class="card score">
+          <p>Average Score</p>
+          <h2>0%</h2>
+          <small>📈 0%from last month</small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Skills Verified</h3>
+          <p>0 out of 4 skills completed</p>
+          <small></small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+       
+     
     </section>
 
  
     <aside class="right">
   <div class="profile">
-    <div class="avatar"></div>
+ 
+ <img 
+  src="{{ url_for('static', filename='uploads/' + user.profile_picture) 
+        if user.profile_picture 
+        else url_for('static', filename='default-avatar' ) }}"
+  class="avatar"
+ >
+ 
+ 
+ 
     <h3> name </h3>
     <p>Computer Science Student<br>📚 Senior Year</p>
     <div class="status status-in-progress" style="margin-top: 10px;">Active Learner</div><br>
 
-    <a href="profile-settings.html" class="edit-profile-btn">Edit Profile</a>
+    <a href="profilepage.html" class="edit-profile-btn">Edit Profile</a>
   </div>
 
   <div class="reminder">
-    <strong>🎯  </strong>
-    <br><small> </small>
+    <strong>🎯Quizzes Taken  </strong>
+    <br><small>0 quizzes completed this month </small>
     <div class="progress-bar">
       <div class="progress-fill" style="width: 0%"></div>
     </div>
@@ -743,4 +732,12 @@
     <strong>📅 Skill Validation Required</strong>
     <br><small>0 skills pending verification</small>
   </div>
-</aside>
+
+  </aside>
+
+  </main>
+
+</div>
+
+</body>
+</html>
