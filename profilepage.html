@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,6 +58,9 @@
       border: 5px solid var(--navy-blue);
       box-shadow: 0 12px 30px rgba(26,54,93,0.25);
       margin-bottom: 15px;
+      
+
+      
     }
 
     .pfp button {
@@ -76,12 +80,14 @@
 
     .info {
       margin: 25px 0;
+      
     }
 
     .info p {
       color: var(--charcoal);
       font-size: 15px;
       line-height: 1.6;
+      
     }
 
     /* SPECIAL CERTIFICATE BOX */
@@ -132,6 +138,11 @@
     .save-btn:hover {
       background: var(--sage-green);
     }
+    .textera
+    {
+      width: 100%;
+      height: 80px;
+    }
   </style>
 </head>
 <body>
@@ -156,7 +167,7 @@
     <textarea id="certificates" placeholder="Add certificates (one per line or comma separated)"></textarea>
   </div>
 
-  <textarea id="bio" placeholder="Update your bio" style="margin-top:20px;"></textarea>
+  <textarea   id="bio" class="textera" placeholder="Update your bio" style="margin-top:20px;" ></textarea>
 
   <button class="save-btn" onclick="updateProfile()">Save Changes</button>
 </div>
@@ -186,4 +197,5 @@
 
 </body>
 </html>
+
 
