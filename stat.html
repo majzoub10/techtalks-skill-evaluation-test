@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="stat.css">
+</head>
+<body>
+
+  <div class="card">
+    <h1>Performance Overview</h1>
+
+    <div class="note">
+      No activity detected yet. Once you start taking quizzes or collaborating,
+      your verified statistics will appear here and update automatically.
+    </div>
+
+    <div class="mini-note">
+      <strong>Coding facts:</strong>
+      Extremely fast responses often reduce accuracy in early stages. 
+      Optimal performance usually appears once average response time stabilizes.
+    </div>
+
+    <canvas id="statsChart" height="320"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('statsChart');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Week 1','Week 2','Week 3','Week 4','Week 5','Week 6'],
+        datasets: [
+          {
+            label: 'Skill Improvement (%)',
+            data: [0, 0, 0, 0, 0, 0],
+            tension: 0.4,
+            borderWidth: 2
+          },
+          {
+            label: 'Active Learning Time (hours)',
+            data: [0, 0, 0, 0, 0, 0],
+            tension: 0.4,
+            borderWidth: 2
+          },
+          {
+            label: 'Consistency Index',
+            data: [0, 0, 0, 0, 0, 0],
+            tension: 0.4,
+            borderWidth: 2
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          },
+          tooltip: {
+            callbacks: {
+              label: () => 'No data yet'
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
