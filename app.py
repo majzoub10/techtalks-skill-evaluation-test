@@ -1,15 +1,21 @@
 
 from flask import Flask, request, jsonify, session, redirect, render_template
 from werkzeug.security import check_password_hash
+from connection import get_connection 
+from dotenv import load_dotenv
+import os
 
-from connection import get_connection
+
+
+
+load_dotenv("env")
+port = int(os.getenv("DB_PORT", 3306)) 
+
 
 app = Flask(__name__)
 app.secret_key = "SUPER_SECRET_KEY"
 
-
-
-
+  
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -18,11 +24,11 @@ def login():
         return jsonify({"message": "Invalid request"}), 400
     
 
-    email = data.get("email")
+    user = data.get("user")
     password = data.get("password")
 
-    if not email or not password:
-        return jsonify({"message": "Email and password required"}), 400
+    if not user or not password:
+        return jsonify({"message": "Username and Password required"}), 400
     
 
 
@@ -31,7 +37,7 @@ def login():
     cursor = conn.cursor(dictionary=True)
     cursor.execute(
         "SELECT id, password_hash FROM users WHERE email = %s",
-        (email,)
+        (user,)
     )
 
     
@@ -43,8 +49,7 @@ def login():
         return jsonify({"message": "Invalid credentials"}), 401
 
     session["user_id"] = user["id"]
-     return redirect("/dashboard")
-
+    return jsonify({"message": "Login successful"}), 200
 
 
 @app.route("/login-page")
