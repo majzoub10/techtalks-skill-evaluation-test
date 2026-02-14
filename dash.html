@@ -593,6 +593,73 @@
       border-radius: 3px;
       transition: width 0.3s ease;
     }
+    .profile-search {
+  margin-top: 30px;
+  max-width: 650px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  border: 2px solid var(--navy-blue);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(26, 54, 93, 0.08);
+  transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: var(--sage-green);
+  box-shadow: 0 8px 24px rgba(26, 54, 93, 0.18);
+}
+
+.search-icon {
+  padding: 0 18px;
+  font-size: 18px;
+  color: var(--slate-gray);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 16px 10px;
+  font-size: 15px;
+  background: transparent;
+  color: var(--charcoal);
+}
+
+.search-input::placeholder {
+  color: var(--slate-gray);
+  font-weight: 500;
+}
+
+.search-btn {
+  padding: 16px 28px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--navy-blue), var(--oxford-blue));
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: var(--sage-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-search {
+    max-width: 100%;
+  }
+
+  .search-btn {
+    padding: 14px 18px;
+  }
+}
+ 
   </style>
 </head>
 <body>
@@ -622,6 +689,17 @@
       <div class="overview">
         <h1>Dashboard Overview</h1>
         <p>Welcome back! Your progress is really good. Keep up the excellent work in your educational journey.</p>
+        <div class="profile-search">
+  <form>
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" 
+             class="search-input" 
+             placeholder="Search for profiles..." />
+      <button type="submit" class="search-btn">Search</button>
+    </div>
+  </form>
+</div>
       </div>
 
  <div class="courses">
