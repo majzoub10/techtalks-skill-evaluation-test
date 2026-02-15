@@ -105,7 +105,6 @@ def edit_profile():
     conn.close()
 
     success = request.args.get("success")
-
     return render_template("edit-profile.html", user=user, success=success)
 
 
