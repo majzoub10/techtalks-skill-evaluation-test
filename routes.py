@@ -32,21 +32,17 @@ def register():
     email = request.form["email"]
     plain_password = request.form["password"]
 
-    # --- THE PRO TIP STEP ---
     hashed_pw = generate_password_hash(plain_password)
-    # ------------------------
 
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Store the HASHED password, not the plain one
     cursor.execute("""
         INSERT INTO users (username, email, password)
         VALUES (%s, %s, %s)
     """, (username, email, hashed_pw))
 
     conn.commit()
-    # ... rest of your code
 
 
 @app.route("/login", methods=["POST"])
@@ -125,7 +121,6 @@ def update_profile():
     conn = get_connection()
     cursor = conn.cursor()
 
-    # Handle image upload
     if profile_picture and profile_picture.filename != "":
         file_ext = os.path.splitext(profile_picture.filename)[1]
         filename = str(uuid.uuid4()) + file_ext
