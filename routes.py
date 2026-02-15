@@ -66,18 +66,6 @@ def login():
         return "Invalid email or password"
 
 
-@app.route("/test-login")
-def test_login():
-    session["user_id"] = 1   # ← Put the user_id from database
-    return "Test user logged in!"
-
-
-@app.route("/login-test")
-def login_test():
-    session["user_id"] = 1
-    return redirect("/edit-profile")
-
-
 @app.route("/edit-profile", methods=["GET"])
 def edit_profile():
 
