@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Profile</h2>
+
+    {% if success %}
+        <p class="success">Profile updated successfully!</p>
+    {% endif %}
+    
+    <div class="profile-header" style="text-align: center;">
+        <div class="image-edit-container">
+            {% if user.profile_picture %}
+                <img src="/{{ user.profile_picture }}" alt="Profile Picture" id="profile-display">
+            {% else %}
+                <img src="/static/default-avatar.png" alt="Default Profile" id="profile-display">
+            {% endif %}
+            
+            <label for="file-upload" class="edit-pen">✎</label>
+            <input id="file-upload" type="file" name="profile_picture" form="profile-form" onchange="previewImage(event)">
+        </div>
+    </div>
+
+
+
+    <form id="profile-form" action="/update-profile" method="POST" enctype="multipart/form-data">
+
+        <label>Username</label>
+        <input type="text" name="username" value="{{ user.username }}" required>
+
+        <label>Age</label>
+        <input type="number" name="age" value="{{ user.age }}">
+
+        <label>Date of Birth</label>
+        <input type="date" name="date_of_birth" value="{{ user.date_of_birth }}">
+
+        <label>Bio</label>
+        <textarea name="bio">{{ user.bio }}</textarea>
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+<script>
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var output = document.getElementById('profile-display');
+        output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}
+</script>
+</body>
+</html>
