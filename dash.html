@@ -753,7 +753,7 @@
       <div class="cards">
         <div class="card score">
           <p>Average Score</p>
-          <h2>0%</h2>
+          <h2>{{ average_score }}%</h2>
           <small>📈 0%from last month</small>
           <div class="progress-bar">
             <div class="progress-fill" style="width: 0%"></div>
@@ -762,7 +762,7 @@
 
         <div class="card">
           <h3>Skills Verified</h3>
-          <p>0 out of 4 skills completed</p>
+          <p>{{ completed_skills }} out of {{ total_skills }} skills completed</p>
           <small></small>
           <div class="progress-bar">
             <div class="progress-fill" style="width: 0%"></div>
