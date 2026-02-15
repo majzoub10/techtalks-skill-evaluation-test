@@ -1,9 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>User Profile | Growvia</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Changa+One:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Changa+One&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --navy-blue: #1a365d;
@@ -11,96 +14,135 @@
       --sage-green: #9caf88;
       --charcoal: #36454f;
       --light-gray: #f8f9fa;
-      c
     }
 
-    * { box-sizing: border-box; font-family: "Inter", sans-serif; margin:0; padding:0; }
-    body { background: var(--light-gray); min-height:100vh; display:flex; justify-content:center; align-items:center; }
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
+    body {
+      background: var(--light-gray);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* LARGER CARD */
     .profile-card {
       background: white;
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 500px;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 620px;
       width: 100%;
-      box-shadow: 0 8px 32px rgba(26,54,93,0.12);
+      box-shadow: 0 10px 40px rgba(26,54,93,0.15);
       border: 2px solid var(--navy-blue);
       text-align: center;
     }
 
-    .profile-card h1 {
+    h1 {
       font-family: 'Changa One', cursive;
-      font-size: 28px;
+      font-size: 32px;
       color: var(--oxford-blue);
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
+    /* BIGGER PROFILE PHOTO */
     .pfp img {
-      width: 120px;
-      height: 120px;
+      width: 190px;
+      height: 190px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid var(--navy-blue);
-      box-shadow: 0 8px 24px rgba(26,54,93,0.2);
+      border: 5px solid var(--navy-blue);
+      box-shadow: 0 12px 30px rgba(26,54,93,0.25);
       margin-bottom: 15px;
+      
+
+      
     }
 
-    .pfp input[type="file"] {
-      margin-top: 10px;
-      padding: 6px;
-      border-radius: 8px;
-      border: 1px solid rgba(0,0,0,0.1);
+    .pfp button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      background: var(--navy-blue);
+      color: white;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pfp button:hover {
+      background: var(--sage-green);
     }
 
     .info {
-      margin: 20px 0;
-    }
-
-    .info h3 {
-      color: var(--navy-blue);
-      font-size: 20px;
-      margin-bottom: 8px;
+      margin: 25px 0;
+      
     }
 
     .info p {
       color: var(--charcoal);
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 15px;
+      line-height: 1.6;
+      
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
+    /* SPECIAL CERTIFICATE BOX */
+    .cert-box {
+      background: #f3f5f8;
+      border: 2px dashed var(--navy-blue);
+      border-radius: 16px;
+      padding: 20px;
       margin-top: 20px;
+      text-align: left;
     }
 
-    input[type="text"], textarea {
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.1);
+    .cert-box h3 {
+      color: var(--navy-blue);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .cert-list {
       font-size: 14px;
-      width: 100%;
+      color: var(--charcoal);
+      margin-bottom: 12px;
     }
 
-    textarea { resize: vertical; min-height: 80px; }
+    .cert-box textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 14px;
+    }
 
-    button {
-      padding: 12px 20px;
+    .save-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
       background: var(--navy-blue);
       color: white;
       font-weight: 600;
       border: none;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
 
-    button:hover {
+    .save-btn:hover {
       background: var(--sage-green);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(26,54,93,0.2);
+    }
+    .textera
+    {
+      width: 100%;
+      height: 80px;
     }
   </style>
 </head>
@@ -110,36 +152,47 @@
   <h1>User Profile</h1>
 
   <div class="pfp">
-    <img src="avatar-placeholder.png" alt="Profile Picture" id="profileImg">
-    <input id="profilePicInput" type="file" accept="image/*" onchange="previewImage(event)">
+    <img src="avatar-placeholder.png" id="profileImg" alt="Profile Picture">
+    <input type="file" id="profilePicInput" accept="image/*" hidden onchange="previewImage(event)">
+    <button onclick="document.getElementById('profilePicInput').click()">Update Photo</button>
   </div>
 
   <div class="info">
-    <h3 id="displayName">Your Name</h3>
-    <p id="displayBio">This is your bio. Tell us about yourself!</p>
+    <p id="displayBio">Update your bio</p>
   </div>
 
-  <form>
-    <input type="text" id="name" placeholder="Enter your name">
-    <textarea id="bio" placeholder="Write a short bio"></textarea>
-    <button type="button" onclick="updateProfile()">Save Changes</button>
-  </form>
+  <!-- CERTIFICATES SPECIAL BOX -->
+  <div class="cert-box">
+    <h3>Certificates</h3>
+    <div class="cert-list" id="displayCerts">No certificates added yet.</div>
+    <textarea id="certificates" placeholder="Add certificates (one per line or comma separated)"></textarea>
+  </div>
+
+  <textarea   id="bio" class="textera" placeholder="Update your bio" style="margin-top:20px;" ></textarea>
+
+  <button class="save-btn" onclick="updateProfile()">Save Changes</button>
 </div>
 
 <script>
   function previewImage(event) {
     const reader = new FileReader();
-    reader.onload = function(){
+    reader.onload = () => {
       document.getElementById('profileImg').src = reader.result;
-    }
+    };
     reader.readAsDataURL(event.target.files[0]);
   }
 
   function updateProfile() {
-    const name = document.getElementById('name').value;
     const bio = document.getElementById('bio').value;
-    if(name) document.getElementById('displayName').textContent = name;
-    if(bio) document.getElementById('displayBio').textContent = bio;
+    const certs = document.getElementById('certificates').value;
+
+    if (bio) {
+      document.getElementById('displayBio').textContent = bio;
+    }
+
+    if (certs) {
+      document.getElementById('displayCerts').textContent = certs;
+    }
   }
 </script>
 
