@@ -1,3 +1,3 @@
-cehcking for edits
+checking for edits
 
 
