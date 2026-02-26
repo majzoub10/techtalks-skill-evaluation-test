@@ -1,0 +1,200 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile | Growvia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Changa+One&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --navy-blue: #1a365d;
+      --oxford-blue: #002147;
+      --sage-green: #9caf88;
+      --charcoal: #36454f;
+      --light-gray: #f8f9fa;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--light-gray);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* LARGER CARD */
+    .profile-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      max-width: 620px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(26,54,93,0.15);
+      border: 2px solid var(--navy-blue);
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Changa One', cursive;
+      font-size: 32px;
+      color: var(--oxford-blue);
+      margin-bottom: 25px;
+    }
+
+    /* BIGGER PROFILE PHOTO */
+    .pfp img {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--navy-blue);
+      box-shadow: 0 12px 30px rgba(26,54,93,0.25);
+      margin-bottom: 15px;
+      
+
+      
+    }
+
+    .pfp button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      background: var(--navy-blue);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .pfp button:hover {
+      background: var(--sage-green);
+    }
+
+    .info {
+      margin: 25px 0;
+      
+    }
+
+    .info p {
+      color: var(--charcoal);
+      font-size: 15px;
+      line-height: 1.6;
+      
+    }
+
+    /* SPECIAL CERTIFICATE BOX */
+    .cert-box {
+      background: #f3f5f8;
+      border: 2px dashed var(--navy-blue);
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .cert-box h3 {
+      color: var(--navy-blue);
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .cert-list {
+      font-size: 14px;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .cert-box textarea {
+      width: 100%;
+      min-height: 70px;
+      resize: vertical;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.15);
+      font-size: 14px;
+    }
+
+    .save-btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 14px;
+      background: var(--navy-blue);
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .save-btn:hover {
+      background: var(--sage-green);
+    }
+    .textera
+    {
+      width: 100%;
+      height: 80px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-card">
+  <h1>User Profile</h1>
+
+  <div class="pfp">
+    <img src="avatar-placeholder.png" id="profileImg" alt="Profile Picture">
+    <input type="file" id="profilePicInput" accept="image/*" hidden onchange="previewImage(event)">
+    <button onclick="document.getElementById('profilePicInput').click()">Update Photo</button>
+  </div>
+
+  <div class="info">
+    <p id="displayBio">Update your bio</p>
+  </div>
+
+  <!-- CERTIFICATES SPECIAL BOX -->
+  <div class="cert-box">
+    <h3>Certificates</h3>
+    <div class="cert-list" id="displayCerts">No certificates added yet.</div>
+    <textarea id="certificates" placeholder="Add certificates (one per line or comma separated)"></textarea>
+  </div>
+
+  <textarea   id="bio" class="textera" placeholder="Update your bio" style="margin-top:20px;" ></textarea>
+
+  <button class="save-btn" onclick="updateProfile()">Save Changes</button>
+</div>
+
+<script>
+  function previewImage(event) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById('profileImg').src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+
+  function updateProfile() {
+    const bio = document.getElementById('bio').value;
+    const certs = document.getElementById('certificates').value;
+
+    if (bio) {
+      document.getElementById('displayBio').textContent = bio;
+    }
+
+    if (certs) {
+      document.getElementById('displayCerts').textContent = certs;
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Growvia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Changa+One:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    
+    :root {
+      --navy-blue: #1a365d;
+      --oxford-blue: #002147;
+      --ivory: #fffff0;
+      --cream: #f5f5dc;
+      --sage-green: #9caf88;
+      --burgundy: #800020;
+      --gold: #d4af37;
+      --terra-cotta: #e2725b;
+      --slate-gray: #708090;
+      --charcoal: #36454f;
+      --light-gray: #f8f9fa;
+      --success-green: #28a745;
+      --warning-orange: #ffc107;
+      --error-red: #dc3545;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--cream) 0%, var(--ivory) 100%);
+      color: var(--charcoal);
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+   
+    body:before {
+      content: " ";
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 2.5rem;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    body:after {
+      content: "✏️";
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 2.5rem;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+      padding: 20px;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+   
+    .sidebar {
+      width: 260px;
+      background: white;
+      border-radius: 20px;
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.12);
+      border: 2px solid var(--navy-blue);
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 40px);
+    }
+
+    .sidebar:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy-blue), var(--sage-green), var(--gold));
+    }
+
+    .logo {
+      font-family: 'Changa One', cursive;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--oxford-blue);
+      background: linear-gradient(135deg, var(--oxford-blue), var(--navy-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-left: 45px;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .logo:before {
+      content: " ";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      background: none;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-grow: 1;
+      margin-top: 20px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-weight: 500;
+      padding: 14px 18px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu a:hover {
+      background: rgba(26, 54, 93, 0.08);
+      color: var(--navy-blue);
+      transform: translateX(5px);
+    }
+
+    .menu a:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 0;
+      background: var(--navy-blue);
+      border-radius: 0 2px 2px 0;
+      transition: height 0.3s ease;
+    }
+
+    .menu a:hover:before {
+      height: 70%;
+    }
+
+    .logout {
+      margin-top: auto;
+      color: var(--error-red);
+      font-weight: 600;
+      cursor: pointer;
+      padding: 14px 18px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(220, 53, 69, 0.05);
+      border: 2px solid transparent;
+    }
+
+    .logout:hover {
+      background: var(--error-red);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+    }
+
+    
+    .main {
+      flex: 1;
+      background: white;
+      border-radius: 20px;
+      display: flex;
+      gap: 24px;
+      box-shadow: 0 8px 32px rgba(26, 54, 93, 0.12);
+      border: 2px solid var(--navy-blue);
+      overflow: hidden;
+      min-height: calc(100vh - 40px);
+    }
+
+    .content {
+      flex: 3;
+      padding: 40px;
+      background: var(--light-gray);
+      border-right: 1px solid rgba(0, 33, 71, 0.1);
+    }
+
+    .overview h1 {
+      margin: 0;
+      font-size: 36px;
+      color: var(--oxford-blue);
+      font-weight: 700;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .overview h1:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--terra-cotta));
+      border-radius: 2px;
+    }
+
+    .overview p {
+      color: var(--slate-gray);
+      margin-top: 12px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      max-width: 600px;
+    }
+
+ 
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(26, 54, 93, 0.15);
+      border-color: var(--navy-blue);
+    }
+
+    .card:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, var(--navy-blue), var(--sage-green));
+    }
+
+    .score {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(156, 175, 136, 0.1));
+      border-color: var(--gold);
+    }
+
+    .score h2 {
+      margin: 15px 0 10px;
+      font-size: 48px;
+      color: var(--oxford-blue);
+      font-weight: 700;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      color: var(--navy-blue);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--slate-gray);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .card small {
+      font-size: 12px;
+      color: var(--sage-green);
+      font-weight: 500;
+    }
+
+    
+    .courses {
+      margin-top: 40px;
+    }
+
+    .courses h2 {
+      margin-bottom: 24px;
+      color: var(--oxford-blue);
+      font-size: 24px;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .courses h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--sage-green);
+      border-radius: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    thead {
+      background: linear-gradient(135deg, var(--navy-blue), var(--oxford-blue));
+    }
+
+    th {
+      padding: 18px 20px;
+      text-align: left;
+      font-weight: 600;
+      color: white;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    td {
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      color: var(--charcoal);
+      font-size: 14px;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(26, 54, 93, 0.03);
+    }
+
+    .tag {
+      background: rgba(156, 175, 136, 0.15);
+      color: var(--sage-green);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-block;
+      border: 1px solid rgba(156, 175, 136, 0.3);
+    }
+
+   
+    .right {
+      flex: 1;
+      background: white;
+      padding: 40px 30px;
+      min-width: 320px;
+      border-left: 1px solid rgba(0, 33, 71, 0.1);
+    }
+
+    .profile {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-blue), var(--sage-green));
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: white;
+      font-weight: bold;
+      border: 4px solid white;
+      box-shadow: 0 8px 24px rgba(26, 54, 93, 0.2);
+      overflow: hidden;
+    }
+
+
+    .edit-profile-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: var(--navy-blue);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+    background: var(--sage-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 54, 93, 0.2);
+}
+
+
+    .avatar:before {
+      content: "👤";
+      font-size: 48px;
+    }
+
+    .profile h3 {
+      color: var(--oxford-blue);
+      margin: 10px 0 5px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .profile p {
+      color: var(--slate-gray);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .reminder {
+      background: linear-gradient(135deg, rgba(245, 245, 220, 0.8), rgba(255, 255, 240, 0.8));
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--sage-green);
+    }
+
+    .reminder:hover {
+      transform: translateX(5px);
+      border-color: var(--navy-blue);
+      box-shadow: 0 4px 12px rgba(26, 54, 93, 0.1);
+    }
+
+    .reminder small {
+      color: var(--slate-gray);
+      font-size: 12px;
+      display: block;
+      margin-top: 8px;
+    }
+
+    .upgrade {
+      background: linear-gradient(135deg, var(--gold), #f8d568);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-top: 40px;
+      font-weight: 600;
+      color: var(--oxford-blue);
+      border: 2px solid var(--gold);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .upgrade:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    }
+
+    .upgrade:before {
+      content: "🚀";
+      font-size: 24px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      opacity: 0.5;
+    }
+
+    
+    *:focus {
+      outline: 2px solid var(--terra-cotta);
+      outline-offset: 2px;
+    }
+
+   
+    @media (max-width: 1200px) {
+      .main {
+        flex-direction: column;
+      }
+      
+      .right {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app {
+        flex-direction: column;
+        padding: 15px;
+      }
+      
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+        margin-bottom: 20px;
+      }
+      
+      .content {
+        padding: 25px;
+      }
+      
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      
+      body:before,
+      body:after {
+        display: none;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .sidebar,
+    .content,
+    .right {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    .sidebar { animation-delay: 0.1s; }
+    .content { animation-delay: 0.2s; }
+    .right { animation-delay: 0.3s; }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .status-completed {
+      background: rgba(40, 167, 69, 0.1);
+      color: var(--success-green);
+    }
+
+    .status-in-progress {
+      background: rgba(255, 193, 7, 0.1);
+      color: var(--warning-orange);
+    }
+
+    .status-pending {
+      background: rgba(220, 53, 69, 0.1);
+      color: var(--error-red);
+    }
+
+   
+    .progress-bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      margin: 10px 0;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sage-green), var(--navy-blue));
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+    /* ============================= */
+/* Professional Profile Search  */
+/* ============================= */
+
+.profile-search {
+  margin-top: 30px;
+  max-width: 650px;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 50px;
+  border: 2px solid var(--navy-blue);
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(26, 54, 93, 0.08);
+  transition: all 0.3s ease;
+}
+
+.search-wrapper:focus-within {
+  border-color: var(--sage-green);
+  box-shadow: 0 8px 24px rgba(26, 54, 93, 0.18);
+}
+
+.search-icon {
+  padding: 0 18px;
+  font-size: 18px;
+  color: var(--slate-gray);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 16px 10px;
+  font-size: 15px;
+  background: transparent;
+  color: var(--charcoal);
+}
+
+.search-input::placeholder {
+  color: var(--slate-gray);
+  font-weight: 500;
+}
+
+.search-btn {
+  padding: 16px 28px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, var(--navy-blue), var(--oxford-blue));
+  transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+  background: var(--sage-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-search {
+    max-width: 100%;
+  }
+
+  .search-btn {
+    padding: 14px 18px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<div class="app">
+
+  
+  <aside class="sidebar">
+    <div class="logo">GROWVIA</div>
+
+    <nav class="menu">
+      <a href="#"><span>📊</span> Overview</a>
+      <a href="#"><span>👥</span> Communities</a>
+      <a href="#"><span>📝</span> Tests & Quizzes</a>
+      <a href="#"><span>📈</span> Statistics</a>
+      <a href="settings.html"><span>⚙️</span> Settings</a>
+    </nav>
+
+    <div class="logout"> Log out</div>
+  </aside>
+
+  
+  <main class="main">
+
+   
+    <section class="content">
+      <div class="overview">
+        <h1>Dashboard Overview</h1>
+        <p>Welcome back! Your progress is really good. Keep up the excellent work in your educational journey.</p>
+        <!-- ===== Profile Search Bar ===== -->
+<div class="profile-search">
+  <form>
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" 
+             class="search-input" 
+             placeholder="Search for profiles..." />
+      <button type="submit" class="search-btn">Search</button>
+    </div>
+  </form>
+</div>
+
+      </div>
+
+      <div class="cards">
+        <div class="card score">
+          <p>Overall Score</p>
+          <h2>0%</h2>
+          <small>📈 0%from last month</small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Skills Verified</h3>
+          <p>0 out of 12 skills completed</p>
+          <small>🏅 0 badges earned</small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Quizzes Taken</h3>
+          <p>0 quizzes completed this month</p>
+          <small>🎯 0% average score</small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Community Rank</h3>
+          <p>Top 0% of all students</p>
+          <small>👑 Elite learner status</small>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="courses">
+        <h2>Recent Activities</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Course/Activity</th>
+              <th>Date</th>
+              <th>Score</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong> </strong><br><small> </small></td>
+              <td> </td>
+              <td>⭐ 0</td>
+              <td><span class="tag status-pending">NotCompleted</span></td>
+            </tr>
+            <tr>
+              <td><strong> </strong><br><small> </small></td>
+              <td> </td>
+              <td>⭐ 0</td>
+              <td><span class="tag status-pending">NotCompleted</span></td>
+            </tr>
+            <tr>
+              <td><strong> </strong><br><small> </small></td>
+              <td> </td>
+              <td>⭐ 0</td>
+              <td><span class="tag status-pending">NotCompleted</span></td>
+            </tr>
+            <tr>
+              <td><strong> </strong><br><small> </small></td>
+              <td> </td>
+              <td>⭐ 0</td>
+              <td><span class="tag status-pending">NotCompleted</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+ 
+    <aside class="right">
+  <div class="profile">
+    <div class="avatar"></div>
+    <h3> name </h3>
+    <p>Computer Science Student<br>📚 Senior Year</p>
+    <div class="status status-in-progress" style="margin-top: 10px;">Active Learner</div><br>
+
+    <a href="profile-settings.html" class="edit-profile-btn">Edit Profile</a>
+  </div>
+
+  <div class="reminder">
+    <strong>🎯  </strong>
+    <br><small> </small>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <div class="reminder">
+    <strong>📢 New Community Challenge</strong>
+    <br><small>Join the "30 Days of Code" challenge</small>
+  </div>
+
+  <div class="reminder">
+    <strong>📅 Skill Validation Required</strong>
+    <br><small>0 skills pending verification</small>
+  </div>
+</aside>
