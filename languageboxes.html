@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programming Languages | Dashboard</title>
+
+<style>
+
+/* ===== GENERAL ===== */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: white;
+}
+
+/* ===== HEADER ===== */
+.header {
+    padding: 40px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(255,255,255,0.1);
+}
+.php {
+    background: linear-gradient(135deg, #777BB4, #4F5B93);
+    border: 3px solid #ffffff;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+}
+
+/* ===== CONTENT ===== */
+.content {
+    padding: 60px;
+}
+
+/* ===== GRID ===== */
+.language-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+/* ===== BUTTON STYLE ===== */
+.language-btn {
+    padding: 60px 30px;
+    border-radius: 20px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    font-size: 18px;
+}
+
+/* Remove default button style */
+.language-btn h2,
+.language-btn p {
+    margin: 10px 0;
+}
+
+/* Hover & Click */
+.language-btn:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+}
+
+.language-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== COLORS ===== */
+.python {
+    background: linear-gradient(135deg, #3776AB, #4B8BBE);
+    border: 3px solid #FFD43B;
+    color: white;
+}
+
+.javascript {
+    background: linear-gradient(135deg, #f7df1e, #f0c000);
+    border: 3px solid #000;
+    color: black;
+}
+
+.java {
+    background: linear-gradient(135deg, #e76f00, #f4a261);
+    border: 3px solid white;
+    color: white;
+}
+
+.add {
+    background: rgba(255,255,255,0.1);
+    border: 3px dashed white;
+    color: white;
+}
+
+.add:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>Programming Languages</h1>
+</div>
+
+<div class="content">
+    <div class="language-grid">
+
+        <button class="language-btn python">
+            <h2>Python</h2>
+            <p>AI, Data Science, Backend</p>
+        </button>
+
+        <button class="language-btn javascript">
+            <h2>JavaScript</h2>
+            <p>Frontend, Web Development</p>
+        </button>
+
+        <button class="language-btn java">
+            <h2>Java</h2>
+            <p>Enterprise Applications</p>
+        </button>
+
+     
+<button class="language-btn php">
+    <h2>PHP</h2>
+    <p>Backend, Web Development</p>
+</button>
+
+    </div>
+</div>
+
+</body>
+</html>
