@@ -90,11 +90,11 @@ body {
     border: 2px solid #4c6fff;
     border-radius: 25px;
     padding: 40px;
-    height: 450px;   /* 👈 IMPORTANT */
-    position: relative; /* 👈 REQUIRED for Chart.js */
+    height: 450px;   
+    position: relative; 
 }
 .chart-container canvas {
-    position: absolute; /* 👈 REQUIRED for Chart.js */
+    position: absolute; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);}
