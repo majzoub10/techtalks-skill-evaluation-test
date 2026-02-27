@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
 
-            console.log(data); // 👈 debug line
+            console.log(data); 
 
             document.getElementById("totalUsers").innerText = data.total_users;
             document.getElementById("totalSkills").innerText = data.total_skills;
