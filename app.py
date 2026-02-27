@@ -1,56 +1,47 @@
-
-from flask import Flask, request, jsonify, session, redirect, render_template
+from flask import Flask, request, session, render_template, redirect, url_for
 from werkzeug.security import check_password_hash
-
 from connection import get_connection
 
 app = Flask(__name__)
-app.secret_key = "SUPER_SECRET_KEY"
+app.secret_key = "YOUR_SECRET_KEY"
 
-
-
-
-
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    data = request.get_json()
-    if not data:
-        return jsonify({"message": "Invalid request"}), 400
-    
 
-    email = data.get("email")
-    password = data.get("password")
+    if request.method == "POST":
 
-    if not email or not password:
-        return jsonify({"message": "Email and password required"}), 400
-    
+        email = request.form.get("email")
+        password = request.form.get("password")
 
+        if not email or not password:
+            return render_template("login.html", error="Email and password required")
 
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute(
-        "SELECT id, password_hash FROM users WHERE email = %s",
-        (email,)
-    )
+        cursor.execute(
+            "SELECT user_id, password FROM users WHERE email = %s",
+            (email,)
+        )
 
-    
-    user = cursor.fetchone()
-    cursor.close()
-    conn.close()
+        user = cursor.fetchone()
+        cursor.close()
+        conn.close()
 
-    if not user or not check_password_hash(user["password_hash"], password):
-        return jsonify({"message": "Invalid credentials"}), 401
+        if not user or not check_password_hash(user["password"], password):
+            return render_template("login.html", error="Invalid credentials")
 
-    session["user_id"] = user["id"]
-     return redirect("/dashboard")
+        session["user_id"] = user["user_id"]
 
+        return redirect(url_for("dashboard"))
 
-
-@app.route("/login-page")
-def login_page():
     return render_template("login.html")
 
 
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/dashboard")
+def dashboard():
+
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+
+    return render_template("dashboard.html")
