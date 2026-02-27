@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GrowVia Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout">
+
+    
+    <div class="sidebar">
+        <h2 class="logo">GrowVia</h2>
+
+        <ul class="nav-links">
+            <li><i class="fa-solid fa-house"></i></li>
+            <li><i class="fa-solid fa-user"></i></li>
+            <li><i class="fa-solid fa-file-lines"></i></li>
+        </ul>
+    </div>
+
+    
+    <div class="main-content">
+
+        
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Users</h3>
+                <p id="totalUsers">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Skills</h3>
+                <p id="totalSkills">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Highest Skill</h3>
+                <p id="highestScore">0%</p>
+                <small id="highestSkillName"></small>
+            </div>
+
+        </div>
+
+        
+        <div class="chart-container">
+            <h3>Average Skill Score</h3>
+            <canvas id="avgScoreChart"></canvas>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
