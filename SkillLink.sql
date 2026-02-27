@@ -127,25 +127,4 @@ CREATE TABLE user_badges (
     FOREIGN KEY (badge_id) REFERENCES badges(badge_id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
-INSERT INTO users (username, email, password, role)
-VALUES
-('john_doe', 'john@example.com', 'hashedpassword123', 'student'),
-('sarah_dev', 'sarah@example.com', 'hashedpassword456', 'student');
-
-INSERT INTO skills (name, description)
-VALUES
-('Java', 'Java Programming'),
-('Python', 'Python Programming'),
-('Next.js', 'Frontend Framework'),
-('PHP', 'Backend Development');
-
-INSERT INTO user_skill_scores (user_id, skill_id, score_percentage)
-VALUES
-(1, 1, 65),
-(1, 2, 20),
-(1, 3, 30),
-(1, 4, 70),
-(2, 1, 80),
-(2, 2, 60);
-
 COMMIT;
