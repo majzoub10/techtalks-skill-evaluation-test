@@ -1,61 +1,57 @@
 
-from flask import Flask, request, jsonify, session, redirect, render_template
+from flask import Flask, request, session, render_template, redirect, url_for
 from werkzeug.security import check_password_hash
-from connection import get_connection 
+from connection import get_connection
 from dotenv import load_dotenv
 import os
 
-
-
-
-load_dotenv("env")
-port = int(os.getenv("DB_PORT", 3306)) 
-
-
 app = Flask(__name__)
-app.secret_key = "SUPER_SECRET_KEY"
+app.secret_key = "YOUR_SECRET_KEY"
 
-  
-
-@app.route("/login", methods=["POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    data = request.get_json()
-    if not data:
-        return jsonify({"message": "Invalid request"}), 400
-    
 
-    user = data.get("user")
-    password = data.get("password")
+    if request.method == "POST":
 
-    if not user or not password:
-        return jsonify({"message": "Username and Password required"}), 400
-    
+        email = request.form.get("email")
+        password = request.form.get("password")
 
+        if not email or not password:
+            return render_template("login.html", error="Email and password required")
 
+        conn = get_connection()
+        cursor = conn.cursor(dictionary=True)
 
-    conn = get_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute(
-        "SELECT id, password_hash FROM users WHERE email = %s",
-        (user,)
-    )
+        # Check user table
+        cursor.execute(
+            "SELECT user_id, password FROM users WHERE email = %s",
+            (email,)
+        )
+        user = cursor.fetchone()
 
-    
-    user = cursor.fetchone()
-    cursor.close()
-    conn.close()
+        if user and check_password_hash(user["password"], password):
+            session["user_id"] = user["user_id"]
+            session["role"] = "user"
 
-    if not user or not check_password_hash(user["password_hash"], password):
-        return jsonify({"message": "Invalid credentials"}), 401
+            cursor.close()
+            conn.close()
+            return redirect(url_for("dashboard"))
 
-    session["user_id"] = user["id"]
-    return jsonify({"message": "Login successful"}), 200
+        # Check admin table
+        cursor.execute(
+            "SELECT admin_id, password FROM admin WHERE email = %s",
+            (email,)
+        )
+        admin = cursor.fetchone()
 
+        cursor.close()
+        conn.close()
 
-@app.route("/login-page")
-def login_page():
+        if admin and check_password_hash(admin["password"], password):
+            session["admin_id"] = admin["admin_id"]
+            session["role"] = "admin"
+            return redirect(url_for("admindashboard"))
+
+        return render_template("login.html", error="Invalid credentials")
+
     return render_template("login.html")
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
