@@ -6,28 +6,26 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <header><h1 class="top">Create Your Account</h1></header>
+    <form action="/submit-signup" method="POST" class="former">
 
-    <div class="allbox">
-        <div class="already">
-        <a href="#">Already have an account?</a>
-        </div>
-        <div class="formbox">
-        <form action="post" class="former">
-            <p><label for="name" class="name" >Name: </label></p>
-            <input type="text" name="name" id="name" required>
-            <p><label for="email" class="email">Email-address: </label></p>
-            <input type="email" name="email" id="email" required placeholder="name@gmail.com">
-            <p><label for="pass" class="pass">Create a password: </label></p>
-            <input type="password" name="pass" id="pass" required placeholder="6 characters or more">
-            <p><label for="passConfirmation" class="passC">Confirm your password: </label></p>
-            <input type="password" name="passConfirmation" id="passC" required>
-            <p><button type="submit" id="submit"><a href="personalInfo.html">Submit and Continue</a></button>
-            <button type="reset" id="reset">Clear</button></p>
-            <p><div id="errors"> 
-                
-            </div></p>
-        </form></div>
+    <p><label for="username">Name:</label></p>
+    <input type="text" name="username" id="username" required>
+
+    <p><label for="email">Email-address:</label></p>
+    <input type="email" name="email" id="email" required placeholder="name@gmail.com">
+
+    <p><label for="password">Create a password:</label></p>
+    <input type="password" name="password" id="password" required placeholder="6 characters or more">
+
+    <p><label for="confirm_password">Confirm your password:</label></p>
+    <input type="password" name="confirm_password" id="confirm_password" required>
+
+    <p>
+        <button type="submit" id="submit">Submit and Continue</button>
+        <button type="reset" id="reset">Clear</button>
+    </p>
+
+</form>
         
     </div> 
     <script> 
