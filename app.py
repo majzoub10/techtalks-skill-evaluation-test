@@ -1,3 +1,4 @@
+
 from flask import Flask, request, session, render_template, redirect, url_for
 from werkzeug.security import check_password_hash
 from connection import get_connection
@@ -19,29 +20,36 @@ def login():
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
+        # Check user table
         cursor.execute(
             "SELECT user_id, password FROM users WHERE email = %s",
             (email,)
         )
-
         user = cursor.fetchone()
+
+        if user and check_password_hash(user["password"], password):
+            session["user_id"] = user["user_id"]
+            session["role"] = "user"
+
+            cursor.close()
+            conn.close()
+            return redirect(url_for("dashboard"))
+
+        # Check admin table
+        cursor.execute(
+            "SELECT admin_id, password FROM admin WHERE email = %s",
+            (email,)
+        )
+        admin = cursor.fetchone()
+
         cursor.close()
         conn.close()
 
-        if not user or not check_password_hash(user["password"], password):
-            return render_template("login.html", error="Invalid credentials")
+        if admin and check_password_hash(admin["password"], password):
+            session["admin_id"] = admin["admin_id"]
+            session["role"] = "admin"
+            return redirect(url_for("admindashboard"))
 
-        session["user_id"] = user["user_id"]
-
-        return redirect(url_for("dashboard"))
+        return render_template("login.html", error="Invalid credentials")
 
     return render_template("login.html")
-
-
-@app.route("/dashboard")
-def dashboard():
-
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-
-    return render_template("dashboard.html")
